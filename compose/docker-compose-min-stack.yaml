@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nifi:
+    image: xentence/nifi:1.0
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "10000:10000"
+      - "8000:8000"
+      - "8675:8675"
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+    container_name: elastic
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
